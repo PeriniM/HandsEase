@@ -12,8 +12,8 @@ let sketch = function(p){
   let new_detection_norm_left = 0.0;
   let new_detection_norm_right = 0.0;
 
-  let l_threshold = 0.01;
-  let r_threshold = 0.01;
+  let l_threshold = 0.001;
+  let r_threshold = 0.001;
   let indeces = [];
   let index_l = [];
   let index_r = [];
@@ -21,7 +21,15 @@ let sketch = function(p){
   p.setup = function(){
     canvas = p.createCanvas(p.windowWidth, p.windowHeight);
     canvas.id("canvas");
+    //flip canvas horizontally
+    canvas.style('transform', 'scale(-1, 1)');
+    canvas.style('filter', 'FlipH');
+    canvas.style('-moz-transform', 'scale(-1, 1)');
+    canvas.style('-webkit-transform', 'scale(-1, 1)');
+    canvas.style('-o-transform', 'scale(-1, 1)');
+    
     p.colorMode(p.HSB);
+    
   }
 
   p.draw = function(){
@@ -31,14 +39,15 @@ let sketch = function(p){
         indeces = p.handsCalculations(detections.multiHandLandmarks);
         indeces[0].push('l');
         indeces[1].push('r');
-        
-        index_l.push(indeces[0]);
-        index_r.push(indeces[1]);
+        if (indeces[2]<40.0){
+          index_l.push(indeces[0]);
+        }
+        if (indeces[3]<40.0){
+          index_r.push(indeces[1]);
+        }
         index_sorted = index_l.concat(index_r);
         index_sorted.sort(function(a, b){return Math.abs(a[2]) - Math.abs(b[2])});
-        //console.log(index_sorted);
-        //p.noFill();
-        //p.beginShape();
+        
         for (let i = 0; i < index_sorted.length; i++) {
           if (index_sorted[i][3] == 'l') {
             p.stroke('red');
@@ -46,29 +55,11 @@ let sketch = function(p){
           else if (index_sorted[i][3] == 'r') {
             p.stroke('blue');
           }
-          p.strokeWeight(Math.abs(index_sorted[i][2] * 200));
+          p.strokeWeight(Math.abs(index_sorted[i][2] * 400));
           p.point(index_sorted[i][0], index_sorted[i][1]);
-          //p.curveVertex(index_sorted[i][0], index_sorted[i][1]);
+         
         }
-        //p.endShape();
-
-        //draw every time all the index points
-        // if (indeces[0]!=[0,0,0]){
-        //   for (let i = 0; i < index_l.length; i++) {
-        //     p.stroke('red');
-        //     p.strokeWeight(Math.abs(index_l[i][2] * 500));
-        //     p.point(index_l[i][0], index_l[i][1]);
-        //   }
-        // }
-        // if (indeces[1]!=[0,0,0]) {
-        //   for (let i = 0; i < index_r.length; i++) {
-        //     p.stroke('blue');
-        //     p.strokeWeight(Math.abs(index_r[i][2] * 500));
-        //     p.point(index_r[i][0], index_r[i][1]);
-        //   }
-        // }
-        //p.drawHands(detections.multiHandLandmarks[0]);
-        //console.log(index_l);
+      
       }
     }
     //show fps
@@ -78,6 +69,10 @@ let sketch = function(p){
   p.handsCalculations = function(detect_hands){
     let tip_index_r = [0,0,0];
     let tip_index_l = [0,0,0];
+    let tip_thumb_r = [0,0,0];
+    let tip_thumb_l = [0,0,0];
+    let dist_it_l;
+    let dist_it_r;
     // for each hand
     for(let i=0; i<detect_hands.length; i++){
 
@@ -92,32 +87,37 @@ let sketch = function(p){
           old_detection_left = new_detection_left;
           old_detection_norm_left = new_detection_norm_left;
           tip_index_l = [new_detection_left[8].x * p.width, new_detection_left[8].y * p.height, new_detection_left[8].z];
+          tip_thumb_l = [new_detection_left[4].x * p.width, new_detection_left[4].y * p.height, new_detection_left[4].z];
         }
         else{
           p.drawHands(old_detection_left);
           tip_index_l = [old_detection_left[8].x * p.width, old_detection_left[8].y * p.height, old_detection_left[8].z];
+          tip_thumb_l = [old_detection_left[4].x * p.width, old_detection_left[4].y * p.height, old_detection_left[4].z];
         }
+        dist_it_l = p.dist(tip_index_l[0],tip_index_l[1],tip_index_l[2],tip_thumb_l[0],tip_thumb_l[1],tip_thumb_l[2]);
       }
 
       // if right hand
       else if(detections.multiHandedness[i].label == "Right"){
         new_detection_right = detect_hands[i];
         new_detection_norm_right = p.hands_norm(new_detection_right);
-        //console.log(new_detection_norm_right - old_detection_norm_right);
 
         if(Math.abs(new_detection_norm_right - old_detection_norm_right) > r_threshold){
           p.drawHands(new_detection_right);
           old_detection_right = new_detection_right;
           old_detection_norm_right = new_detection_norm_right;
           tip_index_r = [new_detection_right[8].x * p.width, new_detection_right[8].y * p.height, new_detection_right[8].z];
+          tip_thumb_r = [new_detection_right[4].x * p.width, new_detection_right[4].y * p.height, new_detection_right[4].z];
         }
         else{
           p.drawHands(old_detection_right);
           tip_index_r = [old_detection_right[8].x * p.width, old_detection_right[8].y * p.height, old_detection_right[8].z];
+          tip_thumb_r = [old_detection_right[4].x * p.width, old_detection_right[4].y * p.height, old_detection_right[4].z];
         }
+        dist_it_r = p.dist(tip_index_r[0],tip_index_r[1],tip_index_r[2],tip_thumb_r[0],tip_thumb_r[1],tip_thumb_r[2]);
       }
     }
-    return [tip_index_l, tip_index_r];
+    return [tip_index_l, tip_index_r, dist_it_l, dist_it_r];
   }
 
   p.drawHands = function(detect){
