@@ -4,7 +4,7 @@ const videoElement = document.getElementsByClassName('input_video')[0];
 
 function gotHands(results) {
     detections = results;
-    console.log(detections);
+    //console.log(detections);
 }
 
 const hands = new Hands({locateFile: (file) => {
