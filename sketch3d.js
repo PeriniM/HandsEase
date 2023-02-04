@@ -18,6 +18,8 @@ let sketch = function(p){
   let index_l = [];
   let index_r = [];
   let index_sorted = [];
+  let count_l = 0;
+  let count_r = 0;
 
   let easycam;
   p.setup = function(){
@@ -57,11 +59,28 @@ let sketch = function(p){
         indeces[0].push('l');
         indeces[1].push('r');
         if (indeces[2]<40.0){
-          index_l.push(indeces[0]);
-          //console.log(indeces[0][2]*10000);
+          if (count_l == 0){
+            index_l.push(indeces[0]);
+            count_l = 1;
+          }
+          else{
+            index_l.push(linearInterpolation(indeces[0], index_l[index_l.length-1], 0.8, 'l'));
+          }
+        }
+        else{
+          count_l = 0;
         }
         if (indeces[3]<40.0){
-          index_r.push(indeces[1]);
+          if (count_r == 0){
+            index_r.push(indeces[1]);
+            count_r = 1;
+          }
+          else{
+            index_r.push(linearInterpolation(indeces[1], index_r[index_r.length-1], 0.8, 'r'));
+          }
+        }
+        else{
+          count_r = 0;
         }
         index_sorted = index_l.concat(index_r);
         index_sorted.sort(function(a, b){return Math.abs(a[2]) - Math.abs(b[2])});
@@ -83,9 +102,15 @@ let sketch = function(p){
       }
     }
     //show fps
-    console.log(p.frameRate().toFixed(2));
+    //console.log(p.frameRate().toFixed(2));
   }
 
+  // linearInterpolation function
+  function linearInterpolation(a, b, t, hand) {
+    let interp = a.map((x, i) => x * (1 - t) + b[i] * t);
+    interp[3] = hand;
+    return interp;
+  }
 
   p.handsCalculations = function(detect_hands){
     let tip_index_r = [0,0,0];
