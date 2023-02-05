@@ -8,6 +8,7 @@ Using your hands to interact with a 3d environment, where you can draw, create 3
   - https://machinelearningknowledge.ai/tensorflow-js-hand-gesture-recognition-and-tracking-using-handpose-model/
 - [ ] Move the computation to a parallel "thread" using Web Workers (working only on tfjs models)
   - https://stackoverflow.com/questions/64249599/how-to-run-handpose-tfjs-model-in-web-worker
+  - https://hacks.mozilla.org/2011/12/faster-canvas-pixel-manipulation-with-typed-arrays/
 - [ ] Implement Linear Kalman Filter
   - https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/pdf/Student_Theses/BA_Laumer-Gumgumcu_final.pdf
   - https://nbviewer.org/github/rlabbe/Kalman-and-Bayesian-Filters-in-Python/blob/master/00-Preface.ipynb
