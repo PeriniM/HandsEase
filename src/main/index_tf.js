@@ -22,7 +22,6 @@ async function run() {
       maxNumHands: 2,
       minDetectionConfidence: 0.8,
       minTrackingConfidence: 0.8,
-      flipHorizontal: true,
     };
     
     const detector = await handPoseDetection.createDetector(model, detectorConfig);
@@ -32,13 +31,14 @@ async function run() {
     video.addEventListener("play", async function() {
       while (true) {
         const hands = await detector.estimateHands(video);
-        //console.log(hands);
         window.detections = hands;
+        //console.log(detections);
         await tf.nextFrame();
       }
     });
   }
   run();
+  
 video2canvas(video);
 function video2canvas(video) {
     const canvas = document.createElement('canvas');
