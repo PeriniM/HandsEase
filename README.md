@@ -1,6 +1,20 @@
 # Drawing App
 Using your hands to interact with a 3d environment, where you can draw, create 3d elements and so on. You can then export the files
 
+### INSTALL
+- Install first the modules using: 
+```
+npm install
+```
+- To run it in a local web server use:
+```
+npm run start
+```
+- If you just want to build it use:
+```
+npm build
+```
+
 ### TO-DO
 #### DETECTION MODEL 
 - [ ] Use tensorflowjs model
