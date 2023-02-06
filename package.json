@@ -1,6 +1,6 @@
 {
   "name": "three-mediapipe-template",
-  "version": "1.0.0",
+  "version": "0.5.0",
   "description": "Using your hands to interact with a 3d environment, where you can draw, create 3d elements and so on. You can then export the files",
   "private": true,
   "scripts": {
@@ -10,9 +10,10 @@
     "build": "webpack"
   },
   "keywords": [],
-  "author": "",
+  "author": "Marco Perini",
   "license": "ISC",
   "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",
     "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
@@ -22,6 +23,7 @@
   "dependencies": {
     "@mediapipe/camera_utils": "^0.3.1675465971",
     "@mediapipe/hands": "^0.4.1675469240",
+    "@tensorflow-models/hand-pose-detection": "^2.0.0",
     "stats.js": "^0.17.0",
     "three": "^0.149.0"
   }
