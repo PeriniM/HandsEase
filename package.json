@@ -24,7 +24,9 @@
     "@mediapipe/camera_utils": "^0.3.1675465971",
     "@mediapipe/hands": "^0.4.1675469240",
     "@tensorflow-models/hand-pose-detection": "^2.0.0",
+    "kalman-filter": "^1.11.1",
     "stats.js": "^0.17.0",
-    "three": "^0.149.0"
+    "three": "^0.149.0",
+    "three-fatline": "^0.5.4"
   }
 }

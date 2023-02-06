@@ -20,8 +20,8 @@ async function run() {
       modelType: "full",
       solutionPath: "./mediapipe/hands/",
       maxNumHands: 2,
-      minDetectionConfidence: 0.8,
-      minTrackingConfidence: 0.8,
+      minDetectionConfidence: 0.9,
+      minTrackingConfidence: 0.9,
     };
     
     const detector = await handPoseDetection.createDetector(model, detectorConfig);
