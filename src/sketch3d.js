@@ -102,7 +102,7 @@ let sketch = function(p){
       }
     }
     //show fps
-    //console.log(p.frameRate().toFixed(2));
+    console.log(p.frameRate().toFixed(2));
   }
 
   // linearInterpolation function
