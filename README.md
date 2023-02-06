@@ -16,6 +16,7 @@ npm build
 ```
 
 ### TO-DO
+- Folders organization: https://mapstore2.readthedocs.io/en/new_merge_doc/developer-guide/project-structure/
 #### DETECTION MODEL 
 - [ ] Use tensorflowjs model
   - https://github.com/tensorflow/tfjs-models/tree/master/hand-pose-detection
