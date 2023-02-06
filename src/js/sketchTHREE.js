@@ -39,12 +39,24 @@ window.addEventListener( 'resize', function () {
 const stats = new Stats();
 document.body.appendChild( stats.dom );
 
-
+// move the cube using the detected hand landmarks in variable window.detections
+function moveCube() {
+    if (window.detections!=undefined && window.detections.length>0) {
+        const landmarks = window.detections[0].keypoints;
+        console.log(landmarks);
+        const x = -landmarks[0].x*0.001;
+        const y = -landmarks[0].y*0.001;
+        // move the cube relative to the center of the screen
+        cube.position.x = (x-0.5)*2;
+        cube.position.y = (y-0.5)*2;
+    }
+}
 function animate() {
     
     requestAnimationFrame( animate );
     stats.update();
     controls.update();
+    moveCube();
     renderer.render( scene, camera );
 }
 animate();
