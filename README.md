@@ -27,7 +27,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/PeriniM/HandsEase">
-    <img src="docs/images/logo.png" alt="Logo" width="100" height="80">
+    <img src="docs/images/HandsEase_logo.png" alt="Logo" width="500" height="300">
   </a>
 
 <h3 align="center">HandsEase Open Project</h3>
