@@ -6,6 +6,11 @@ module.exports = {
   entry:['./src/main/index_tf.js', './src/js/sketchTHREE.js'],
   devServer: {
     static: './dist',
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+    },
   },
   performance: {
     //maxAssetSize: 1000000,

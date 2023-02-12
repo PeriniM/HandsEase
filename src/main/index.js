@@ -12,6 +12,7 @@ window.detections = {};
 
 // create a video element
 const videoElement = document.createElement('video');
+videoElement.setAttribute('id', 'webcam');
 videoElement.setAttribute('autoplay', '');
 videoElement.setAttribute('muted', '');
 videoElement.setAttribute('playsinline', '');
@@ -20,8 +21,8 @@ videoElement.height = 480;
 document.body.appendChild(videoElement);
 
 function gotHands(results) {
-    detections = results;
-    //console.log(detections);
+    window.detections = results;
+    console.log(results);
 }
 
 const hands = new Hands({locateFile: (file) => {

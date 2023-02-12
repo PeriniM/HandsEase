@@ -3,8 +3,9 @@ import * as tf from '@tensorflow/tfjs-core';
 import '../styles/main.css';
 
 window.detections = {};
-// create a video element
+// create a webcam element
 const video = document.createElement('video');
+video.setAttribute('id', 'webcam');
 video.setAttribute('autoplay', '');
 video.setAttribute('muted', '');
 video.setAttribute('playsinline', '');
@@ -20,8 +21,8 @@ async function run() {
       modelType: "full",
       solutionPath: "./mediapipe/hands/",
       maxNumHands: 2,
-      minDetectionConfidence: 0.9,
-      minTrackingConfidence: 0.9,
+      minDetectionConfidence: 0.5,
+      minTrackingConfidence: 0.5,
     };
     
     const detector = await handPoseDetection.createDetector(model, detectorConfig);
@@ -32,14 +33,12 @@ async function run() {
       while (true) {
         const hands = await detector.estimateHands(video);
         window.detections = hands;
-        //console.log(detections);
         await tf.nextFrame();
       }
     });
   }
   run();
   
-video2canvas(video);
 function video2canvas(video) {
     const canvas = document.createElement('canvas');
     canvas.width = video.width;
