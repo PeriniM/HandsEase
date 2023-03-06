@@ -244,7 +244,7 @@ Project Link: [HandsEase Repo](https://github.com/PeriniM/HandsEase)
 [issues-shield]: https://img.shields.io/github/issues/PeriniM/HandsEase.svg?style=for-the-badge
 [issues-url]: https://github.com/PeriniM/HandsEase/issues
 [license-shield]: https://img.shields.io/github/license/PeriniM/HandsEase.svg?style=for-the-badge
-[license-url]: https://github.com/PeriniM/HandsEase/blob/master/LICENSE.txt
+[license-url]: https://github.com/PeriniM/HandsEase/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/perinim
 [product-screenshot]: images/screenshot.png
