@@ -83,7 +83,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+Open source template for hand detection webapps. You can build drawing apps, manipulate 3D objects on the web and so on.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -100,35 +100,36 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+- Install Node.js from the main website [here](https://nodejs.org/en/)
+
+Optional:
+
+- Run the Docker container using the Visual Studio Code Dev Containers extension
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/PeriniM/HandsEase.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. To run it in a local web server
+   ```sh
+   npm run start
+   ```
+4. If you just want to build it
+```sh
+   npm build
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -138,7 +139,11 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+
+
+https://user-images.githubusercontent.com/19621159/223075567-c6e3ce81-6fb2-4bd1-98bd-ba0dd4d2dcfe.mp4
+
+
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
@@ -148,11 +153,30 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 <!-- ROADMAP -->
 ## Roadmap
+- Folders organization: https://mapstore2.readthedocs.io/en/new_merge_doc/developer-guide/project-structure/
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+#### DETECTION MODEL 
+- [x] Use tensorflowjs model
+  - https://github.com/tensorflow/tfjs-models/tree/master/hand-pose-detection
+  - https://machinelearningknowledge.ai/tensorflow-js-hand-gesture-recognition-and-tracking-using-handpose-model/
+- [ ] Move the computation to a parallel "thread" using Web Workers (working only on tfjs models)
+  - https://stackoverflow.com/questions/64249599/how-to-run-handpose-tfjs-model-in-web-worker
+  - https://hacks.mozilla.org/2011/12/faster-canvas-pixel-manipulation-with-typed-arrays/
+- [ ] Implement Linear Kalman Filter
+  - https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/pdf/Student_Theses/BA_Laumer-Gumgumcu_final.pdf
+  - https://nbviewer.org/github/rlabbe/Kalman-and-Bayesian-Filters-in-Python/blob/master/00-Preface.ipynb
+- [ ] Implement gesture detection model
+
+#### GRAPHICS
+- [x] Port the app in threejs
+- [ ] Add 3D Gizmo
+- [ ] Add grid floor
+- [ ] Add a mockup for the rig of the hands (like transparent hands 3d model)
+
+#### INTERACTION
+- [ ] "OK" gesture should pick things and also draw
+- [ ] Implement rotation and pan with the other hand
+- [ ] Double "OK" gesture allow the user to rotate and scale objects
 
 See the [open issues](https://github.com/PeriniM/HandsEase/issues) for a full list of proposed features (and known issues).
 
@@ -190,9 +214,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Marco Perini - [@linkedin](https://www.linkedin.com/in/perinim/)
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/PeriniM/HandsEase)
+Project Link: [HandsEase Repo](https://github.com/PeriniM/HandsEase)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -235,48 +259,3 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [p5.js]: https://img.shields.io/badge/p5.js-ED225D?style=for-the-badge&logo=p5.js&logoColor=FFFFFF
 [p5-url]: https://p5js.org/
 [React-url]: https://reactjs.org/
-
-
-
-
-# Drawing App
-Using your hands to interact with a 3d environment, where you can draw, create 3d elements and so on. You can then export the files
-
-### INSTALL
-- Install first the modules using: 
-```
-npm install
-```
-- To run it in a local web server use:
-```
-npm run start
-```
-- If you just want to build it use:
-```
-npm build
-```
-
-### TO-DO
-- Folders organization: https://mapstore2.readthedocs.io/en/new_merge_doc/developer-guide/project-structure/
-#### DETECTION MODEL 
-- [ ] Use tensorflowjs model
-  - https://github.com/tensorflow/tfjs-models/tree/master/hand-pose-detection
-  - https://machinelearningknowledge.ai/tensorflow-js-hand-gesture-recognition-and-tracking-using-handpose-model/
-- [ ] Move the computation to a parallel "thread" using Web Workers (working only on tfjs models)
-  - https://stackoverflow.com/questions/64249599/how-to-run-handpose-tfjs-model-in-web-worker
-  - https://hacks.mozilla.org/2011/12/faster-canvas-pixel-manipulation-with-typed-arrays/
-- [ ] Implement Linear Kalman Filter
-  - https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/pdf/Student_Theses/BA_Laumer-Gumgumcu_final.pdf
-  - https://nbviewer.org/github/rlabbe/Kalman-and-Bayesian-Filters-in-Python/blob/master/00-Preface.ipynb
-- [ ] Implement gesture detection model
-
-#### GRAPHICS
-- [ ] Port the app in threejs
-- [ ] Add 3D Gizmo
-- [ ] Add grid floor
-- [ ] Add a mockup for the rig of the hands (like transparent hands 3d model)
-
-#### INTERACTION
-- [ ] "OK" gesture should pick things and also draw
-- [ ] Implement rotation and pan with the other hand
-- [ ] Double "OK" gesture allow the user to rotate and scale objects
