@@ -22,7 +22,7 @@ document.body.appendChild(videoElement);
 
 function gotHands(results) {
     window.detections = results;
-    console.log(results);
+    //console.log(results);
 }
 
 const hands = new Hands({locateFile: (file) => {

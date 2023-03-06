@@ -53,7 +53,7 @@ let sketch = function(p){
     easycam.setPanScale(0.004 / Math.sqrt(cam_dist));
     p.ambientLight(100);
     p.pointLight(255, 255, 255, 0, 0, 0);
-    console.log(window.detections);
+    //console.log(window.detections);
     if(detections != undefined){
       if(detections.multiHandLandmarks != undefined){ 
         indeces = p.handsCalculations(detections.multiHandLandmarks);

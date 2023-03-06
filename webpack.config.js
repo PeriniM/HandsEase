@@ -3,7 +3,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   mode: 'development',
-  entry:['./src/main/index_tf.js', './src/js/sketchTHREE.js'],
+  entry:['./src/main/index.js', './src/js/sketch3d.js'],
   devServer: {
     static: './dist',
     headers: {
